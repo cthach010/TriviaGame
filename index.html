@@ -45,7 +45,9 @@
   <div class="row center">
                 <div class="col-lg-12">
         <!-- <button id="submit">Done</button>  -->
-        <input id = "button" type = "button" value = "Done!" onclick = check();>
+        
+        <button id = "done">Done!</button>
+
         </div>
   </div>
   <div class="row bottom">
@@ -53,7 +55,10 @@
 
 
   </div>
-
+<div id "question"></span>
+<div id "answer"></span>
+<div id "wrong"></span>
+</div>
   
 
 <script>
@@ -100,7 +105,8 @@ function showhide() {
                clearInterval(interval);}
            },1000);
         })
-  
+
+     
     /* $("#button").on("click",setTimer());*/
 
      var question =[{
@@ -238,10 +244,46 @@ $("#quiz").append('<input type = "radio" name = "' + i + '" id = "'+ i + 'c" val
 
 $("#quiz").append('<input type = "radio" name = "' + i + '" id = "'+ i + 'd" value =  " ' + question [i].answers.d +'" >' + question [i].answers.d + '<br> <br>');
 }
+//  Declare Array
+var correct = 0;
+var wrong = 0;
+var guess = 0;
+
+// stop-timer Function
 
 
+  // done button
+  $("#done").on('click', function (){
+        console.log("I'vebeenclicked")
+//        stopTimer();
+        
 
-	
+                for(i = 0; i < question.length; i++){
+                        var options =
+                document.getElementsByName(i);
+                        for(var x = 0; x < options.length;x ++)
+                {
+                        if (options[x].checked) {
+                   console.log("User guess:" + options[x].value);
+                   guess = options[x].value;
+               }
+           }
+
+           if (guess === question[i].correct) {
+               correct++;
+               console.log("Correct:" + correct);
+           }
+           else {
+               wrong++;
+               console.log("Wrong:" + wrong);
+           }
+       
+  
+       $("#question").html("<br>Total number of questions: " + question.length + "<br>");
+       $("#answer").html("<br>Questions answered correct:" + correct + "<br>");
+       $("#wrong").html("<br>Questions answered wrong:" + wrong + "<br><br><br>");
+}
+})
 </script>
 </div>
 </body>

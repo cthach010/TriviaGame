@@ -33,9 +33,7 @@
         <button onclick="showhide();" id="timer">Start</button>
         </div>
         </h2>
-   
-                <!-- then the timer will be shown after clicking start -->
-                
+        <div id="count"></div>
 <div id="questions" class="container" style="display: none;"> 
   <div id="timer"></div>
   <div class="row center">
@@ -71,7 +69,7 @@ function showhide() {
         b.style.display = "block";
         }
 }
-function start() {
+/*function start() {
     var timer = document.createElement('span'),
         seconds = 60,
         interval = setInterval(function () {
@@ -80,10 +78,30 @@ function start() {
             }
             timer.innerHTML = "0:" + (seconds < 10 ? '0' : '') + seconds;
         }, 1000);
-    
-    timer.innerHTML = "01:00";
+
+        timer.innerHTML = "01:00";
     document.body.appendChild(timer);
-}
+}*/
+    
+        var count = 120;
+   var interval = 0;
+
+   $("#button").on("click",function setTimer() {
+       interval = setInterval(function () {
+           
+           document.getElementById('count').innerHTML = "<b>Time Remaining:<b>" + count;
+           count--;
+           console.log("Timer started");
+           
+           if (count == -1) {
+               //   document.getElementById('count').innerHTML = 'Done';
+               alert("You're out of time!");
+               
+               clearInterval(interval);}
+           },1000);
+        })
+  
+    /* $("#button").on("click",setTimer());*/
 
      var question =[{
         question: "1: The Fantastic Four have the headquarters in what building?",
